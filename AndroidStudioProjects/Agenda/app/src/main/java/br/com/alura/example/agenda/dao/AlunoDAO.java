@@ -26,19 +26,23 @@ public class AlunoDAO {
 
     public void edita(Aluno aluno){
 
-        Aluno alunoEncontrado = null;
-        for (Aluno a: alunos) {
-
-            Boolean validation = a.getId().intValue() == aluno.getId().intValue();
-            if(validation){
-                alunoEncontrado = a;
-                break;
-            }
-        }
+        Aluno alunoEncontrado = bucaAlunoPorId(aluno);
 
         if(alunoEncontrado != null){
             int posicao = alunos.indexOf(alunoEncontrado);
             alunos.set(posicao, aluno);
         }
+    }
+
+    private Aluno bucaAlunoPorId(Aluno aluno) {
+        Aluno alunoEncontrado = null;
+        for (Aluno a: alunos) {
+
+            Boolean validation = a.getId().intValue() == aluno.getId().intValue();
+            if(validation){
+                return  a;
+            }
+        }
+        return alunoEncontrado;
     }
 }
