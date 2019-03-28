@@ -11,9 +11,12 @@ import br.com.alura.example.agenda.R;
 import br.com.alura.example.agenda.dao.AlunoDAO;
 import br.com.alura.example.agenda.models.Aluno;
 
+import static br.com.alura.example.agenda.ui.activity.ConstantesActivities.CHAVE_ALUNO;
+import static br.com.alura.example.agenda.ui.activity.ConstantesActivities.TITLE_APPBAR_EDITA;
+import static br.com.alura.example.agenda.ui.activity.ConstantesActivities.TITLE_APPBAR_NOVO_ALUNO;
+
 public class FormularioAlunoActivity extends AppCompatActivity {
 
-    public static final String TITLE_APPBAR = "Novo aluno";
     private EditText campoNome;
     private EditText campoTelefone;
     private EditText campoEmail;
@@ -25,21 +28,27 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_aluno);
-        setTitle(TITLE_APPBAR);
         inicializacaoDosCampos();
         configuraBotaoSalvar();
+        carregaAluno();
+    }
 
-        if( getIntent().hasExtra("aluno")) {
+    private void carregaAluno() {
+        if( getIntent().hasExtra(CHAVE_ALUNO)) {
             Intent dados = getIntent();
-
             aluno = (Aluno) dados.getSerializableExtra("aluno");
-
-            campoNome.setText(aluno.getNome());
-            campoTelefone.setText(aluno.getTelefone());
-            campoEmail.setText(aluno.getEmail());
+            preencheCampos();
+            setTitle(TITLE_APPBAR_EDITA);
         } else {
             aluno = new Aluno();
+            setTitle(TITLE_APPBAR_NOVO_ALUNO);
         }
+    }
+
+    private void preencheCampos() {
+        campoNome.setText(aluno.getNome());
+        campoTelefone.setText(aluno.getTelefone());
+        campoEmail.setText(aluno.getEmail());
     }
 
     private void configuraBotaoSalvar() {
@@ -47,15 +56,19 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         buttonSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preencheAluno();
-                if(aluno.temIdValido()) {
-                    dao.edita(aluno);
-                }else{
-                    dao.salva(aluno);
-                }
-                finish();
+                finalizaFormulario();
             }
         });
+    }
+
+    private void finalizaFormulario() {
+        preencheAluno();
+        if(aluno.temIdValido()) {
+            dao.edita(aluno);
+        }else{
+            dao.salva(aluno);
+        }
+        finish();
     }
 
     private void inicializacaoDosCampos() {
