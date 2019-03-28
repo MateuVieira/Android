@@ -16,17 +16,18 @@ import br.com.alura.example.agenda.dao.AlunoDAO;
 import br.com.alura.example.agenda.models.Aluno;
 
 import static br.com.alura.example.agenda.ui.activity.ConstantesActivities.CHAVE_ALUNO;
-import static br.com.alura.example.agenda.ui.activity.ConstantesActivities.TITLE_APPBAR;
+import static br.com.alura.example.agenda.ui.activity.ConstantesActivities.TITLE_APPBAR_NOVO_ALUNO;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
     private  final AlunoDAO dao = new AlunoDAO();
+    private ArrayAdapter<Aluno> adapeter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
-        setTitle(TITLE_APPBAR);
+        setTitle(TITLE_APPBAR_NOVO_ALUNO);
         configurandoFloatingButtonAdicionaAluno();
 
     }
@@ -57,6 +58,16 @@ public class ListaAlunosActivity extends AppCompatActivity {
         final List<Aluno> alunos = dao.todos();
         configuraAdapter(listaDeAlunos, alunos);
         configuraListenerDeCliquePorItem(listaDeAlunos);
+
+        listaDeAlunos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Aluno alunoEcolhido = (Aluno) parent.getItemAtPosition(position);
+                dao.remove(alunoEcolhido);
+                adapeter.remove(alunoEcolhido);
+                return true;
+            }
+        });
     }
 
     private void configuraListenerDeCliquePorItem(ListView listaDeAlunos) {
@@ -77,10 +88,12 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     private void configuraAdapter(ListView listaDeAlunos, List<Aluno> alunos) {
-        listaDeAlunos.setAdapter(new ArrayAdapter<>(
+
+        adapeter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
-                alunos)
-        );
+                alunos);
+        listaDeAlunos.setAdapter(adapeter);
+        
     }
 }
