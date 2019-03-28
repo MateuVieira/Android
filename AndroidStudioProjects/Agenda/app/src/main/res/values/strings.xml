@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Agenda</string>
+    <string name="daniel">Daniel!</string>
+    <string name="nome1">nome1</string>
+    <string name="nome2">nome2</string>
+    <string name="nome3">nome3</string>
 </resources>
