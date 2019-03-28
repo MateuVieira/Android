@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.List;
 
 import br.com.alura.example.agenda.R;
 import br.com.alura.example.agenda.dao.AlunoDAO;
@@ -29,6 +28,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_alunos);
         setTitle(TITLE_APPBAR_NOVO_ALUNO);
         configurandoFloatingButtonAdicionaAluno();
+        listaAlunos();
 
     }
 
@@ -50,24 +50,37 @@ public class ListaAlunosActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        listaAlunos();
+        atualizaAlunos();
+
+    }
+
+    private void atualizaAlunos() {
+        adapeter.clear();
+        adapeter.addAll(dao.todos());
     }
 
     private void listaAlunos() {
         ListView listaDeAlunos = findViewById(R.id.activity_lista_de_alunos_listwiew);
-        final List<Aluno> alunos = dao.todos();
-        configuraAdapter(listaDeAlunos, alunos);
+        configuraAdapter(listaDeAlunos);
         configuraListenerDeCliquePorItem(listaDeAlunos);
 
+        configuraListenerDeCliqueLongoPorIntem(listaDeAlunos);
+    }
+
+    private void configuraListenerDeCliqueLongoPorIntem(ListView listaDeAlunos) {
         listaDeAlunos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Aluno alunoEcolhido = (Aluno) parent.getItemAtPosition(position);
-                dao.remove(alunoEcolhido);
-                adapeter.remove(alunoEcolhido);
+                remove(alunoEcolhido);
                 return true;
             }
         });
+    }
+
+    private void remove(Aluno aluno) {
+        dao.remove(aluno);
+        adapeter.remove(aluno);
     }
 
     private void configuraListenerDeCliquePorItem(ListView listaDeAlunos) {
@@ -87,12 +100,11 @@ public class ListaAlunosActivity extends AppCompatActivity {
         startActivity(vaiParaFormularioAluno);
     }
 
-    private void configuraAdapter(ListView listaDeAlunos, List<Aluno> alunos) {
+    private void configuraAdapter(ListView listaDeAlunos) {
 
         adapeter = new ArrayAdapter<>(
                 this,
-                android.R.layout.simple_list_item_1,
-                alunos);
+                android.R.layout.simple_list_item_1);
         listaDeAlunos.setAdapter(adapeter);
         
     }
