@@ -2,6 +2,13 @@ package br.com.alura.example.agenda;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -9,5 +16,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        List<String> alunos= new ArrayList<>(Arrays.asList("Alex", "Fran", "Nico", "Mateus", "Amanda", "Ana", "Atena", "Junior"));
+
+        ListView listaDeAlunos = findViewById(R.id.activity_main_lista_de_alunos);
+
+        listaDeAlunos.setAdapter(new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                alunos));
+
+
     }
 }
