@@ -13,7 +13,7 @@ import br.com.alura.example.agenda.dao.AlunoDAO;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
-    AlunoDAO dao = new AlunoDAO();
+    private  final AlunoDAO dao = new AlunoDAO();
     public static final String TITLE_APPBAR = "Lista de alunos";
 
     @Override
@@ -30,10 +30,14 @@ public class ListaAlunosActivity extends AppCompatActivity {
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ListaAlunosActivity.this,
-                                        FormularioAlunoActivity.class));
+                abreFormularioAlunoActivity();
             }
         });
+    }
+
+    private void abreFormularioAlunoActivity() {
+        startActivity(new Intent(ListaAlunosActivity.this,
+                                FormularioAlunoActivity.class));
     }
 
     @Override
