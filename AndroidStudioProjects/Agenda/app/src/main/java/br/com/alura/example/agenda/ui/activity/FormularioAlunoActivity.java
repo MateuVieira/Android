@@ -1,5 +1,6 @@
 package br.com.alura.example.agenda.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,6 +18,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
     private EditText campoTelefone;
     private EditText campoEmail;
     final AlunoDAO dao = new AlunoDAO();
+    private Aluno aluno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,18 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         setTitle(TITLE_APPBAR);
         inicializacaoDosCampos();
         configuraBotaoSalvar();
+
+        if( getIntent().hasExtra("aluno")) {
+            Intent dados = getIntent();
+
+            aluno = (Aluno) dados.getSerializableExtra("aluno");
+
+            campoNome.setText(aluno.getNome());
+            campoTelefone.setText(aluno.getTelefone());
+            campoEmail.setText(aluno.getEmail());
+        } else {
+            aluno = new Aluno();
+        }
     }
 
     private void configuraBotaoSalvar() {
@@ -33,9 +47,13 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         buttonSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Aluno aluno = criaAluno();
-                salva(aluno);
+                preencheAluno();
+                if(aluno.temIdValido()) {
+                    dao.edita(aluno);
+                }else{
+                    dao.salva(aluno);
+                }
+                finish();
             }
         });
     }
@@ -46,16 +64,9 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         campoEmail = findViewById(R.id.activit_formulario_aluno_email);
     }
 
-    private void salva(Aluno aluno) {
-        dao.salva(aluno);
-        finish();
-    }
-
-    private Aluno criaAluno() {
-        String nome = campoNome.getText().toString();
-        String telefone = campoTelefone.getText().toString();
-        String email = campoEmail.getText().toString();
-
-        return new Aluno(nome, telefone, email);
+    private void preencheAluno() {
+        aluno.setNome(campoNome.getText().toString());
+        aluno.setTelefone(campoTelefone.getText().toString());
+        aluno.setEmail(campoEmail.getText().toString());
     }
 }
