@@ -1,7 +1,5 @@
 package br.com.alura.example.agenda.dao;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,7 +24,7 @@ public class AlunoDAO {
 
     public void edita(Aluno aluno){
 
-        Aluno alunoEncontrado = bucaAlunoPorId(aluno);
+        Aluno alunoEncontrado = buscaAlunoPorId(aluno);
 
         if(alunoEncontrado != null){
             int posicao = alunos.indexOf(alunoEncontrado);
@@ -34,7 +32,7 @@ public class AlunoDAO {
         }
     }
 
-    private Aluno bucaAlunoPorId(Aluno aluno) {
+    private Aluno buscaAlunoPorId(Aluno aluno) {
         Aluno alunoEncontrado = null;
         for (Aluno a: alunos) {
 
@@ -44,5 +42,12 @@ public class AlunoDAO {
             }
         }
         return alunoEncontrado;
+    }
+
+    public void remove(Aluno aluno) {
+        Aluno alunoDevolvido = buscaAlunoPorId(aluno);
+        if (alunoDevolvido != null) {
+            alunos.remove(alunoDevolvido);
+        }
     }
 }
