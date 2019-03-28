@@ -4,12 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.List;
 
 import br.com.alura.example.agenda.R;
 import br.com.alura.example.agenda.dao.AlunoDAO;
+import br.com.alura.example.agenda.models.Aluno;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
@@ -48,9 +54,24 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     private void listaAlunos() {
         ListView listaDeAlunos = findViewById(R.id.activity_lista_de_alunos_listwiew);
+
+        final List<Aluno> alunos = dao.todos();
+
         listaDeAlunos.setAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
-                dao.todos()));
+                alunos)
+        );
+
+        listaDeAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Aluno alunoEcolhido = alunos.get(position);
+                Intent vaiParaFormularioAluno = new Intent(ListaAlunosActivity.this,
+                                                                    FormularioAlunoActivity.class);
+                vaiParaFormularioAluno.putExtra("aluno", alunoEcolhido);
+                startActivity(vaiParaFormularioAluno);
+            }
+        });
     }
 }
