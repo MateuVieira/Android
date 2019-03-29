@@ -37,7 +37,7 @@ public class Aluno implements Serializable {
     @NonNull
     @Override
     public String toString() {
-        return this.nome + " - " + this.telefone;
+        return this.nome;
     }
 
     public String getNome() {
