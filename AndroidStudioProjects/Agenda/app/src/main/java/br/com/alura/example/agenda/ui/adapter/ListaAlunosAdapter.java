@@ -15,7 +15,7 @@ import br.com.alura.example.agenda.models.Aluno;
 
 public class ListaAlunosAdapter  extends BaseAdapter {
     private final List<Aluno> alunos = new ArrayList<>();
-    private Context context;
+    private final Context context;
 
     public ListaAlunosAdapter(Context context) {
         this.context = context;
@@ -39,7 +39,7 @@ public class ListaAlunosAdapter  extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = configuraView(parent);
-        preencheDadosAlunoNaView(position, view);
+        vinculaDadosAlunoNaView(position, view);
         return view;
     }
 
@@ -48,7 +48,7 @@ public class ListaAlunosAdapter  extends BaseAdapter {
                     .inflate(R.layout.item_aluno, parent, false);
     }
 
-    private void preencheDadosAlunoNaView(int position, View view) {
+    private void vinculaDadosAlunoNaView(int position, View view) {
         Aluno aluno = alunos.get(position);
 
         TextView nome = view.findViewById(R.id.item_aluno_nome);
@@ -58,15 +58,22 @@ public class ListaAlunosAdapter  extends BaseAdapter {
         telefone.setText(aluno.getTelefone());
     }
 
-    public void clear() {
+    private void clear() {
         this.alunos.clear();
     }
 
-    public void addAll(List<Aluno> alunos) {
+    private void addAll(List<Aluno> alunos) {
         this.alunos.addAll(alunos);
+    }
+
+    public void atualiza( List<Aluno> alunos) {
+        this.clear();
+        this.addAll(alunos);
+        notifyDataSetChanged();
     }
 
     public void remove(Aluno aluno) {
         this.alunos.remove(aluno);
+        notifyDataSetChanged();
     }
 }
