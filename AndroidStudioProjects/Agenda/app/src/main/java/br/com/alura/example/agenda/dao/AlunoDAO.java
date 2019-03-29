@@ -12,7 +12,6 @@ public class AlunoDAO {
     private static Integer contadorId = 1;
 
     public void salva(Aluno aluno) {
-
         aluno.setid(contadorId);
         alunos.add(aluno);
         contadorId++;
