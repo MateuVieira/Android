@@ -1,6 +1,6 @@
 package br.com.alura.example.agenda.models;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 
