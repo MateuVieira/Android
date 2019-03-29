@@ -35,13 +35,6 @@
             android:hint="E-mail"
             android:inputType="textEmailAddress" />
 
-        <Button
-            android:id="@+id/activit_formulario_button_salvar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-
-            android:text="Salvar" />
     </LinearLayout>
 
 </ScrollView>
