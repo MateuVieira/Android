@@ -5,18 +5,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 import br.com.alura.example.agenda.R;
 import br.com.alura.example.agenda.dao.AlunoDAO;
@@ -66,7 +58,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        atualizaAlunos();
+        adapter.atualiza(dao.todos());
 
     }
 
@@ -83,11 +75,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
     private void abreFormularioInseriAluno() {
         startActivity(new Intent(ListaAlunosActivity.this,
                                 FormularioAlunoActivity.class));
-    }
-
-    private void atualizaAlunos() {
-        adapter.clear();
-        adapter.addAll(dao.todos());
     }
 
     private void listaAlunos() {
