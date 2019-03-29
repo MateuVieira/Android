@@ -20,7 +20,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
     private EditText campoNome;
     private EditText campoTelefone;
     private EditText campoEmail;
-    final AlunoDAO dao = new AlunoDAO();
+    private final AlunoDAO dao = new AlunoDAO();
     private Aluno aluno;
 
     @Override

@@ -5,6 +5,7 @@ import android.app.Application;
 import br.com.alura.example.agenda.dao.AlunoDAO;
 import br.com.alura.example.agenda.models.Aluno;
 
+@SuppressWarnings("WeakerAccess")
 public class AgendaApplication extends Application {
 
     @Override

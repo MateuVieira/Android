@@ -33,15 +33,14 @@ public class AlunoDAO {
     }
 
     private Aluno buscaAlunoPorId(Aluno aluno) {
-        Aluno alunoEncontrado = null;
         for (Aluno a: alunos) {
 
-            Boolean validation = a.getId().intValue() == aluno.getId().intValue();
+            boolean validation = a.getId().intValue() == aluno.getId().intValue();
             if(validation){
                 return  a;
             }
         }
-        return alunoEncontrado;
+        return null;
     }
 
     public void remove(Aluno aluno) {
