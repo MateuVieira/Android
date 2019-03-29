@@ -3,6 +3,8 @@ package br.com.alura.example.agenda.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -20,7 +22,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
     private EditText campoNome;
     private EditText campoTelefone;
     private EditText campoEmail;
-    private final AlunoDAO dao = new AlunoDAO();
+    private final AlunoDAO dao = new AlunoDAO(this);
     private Aluno aluno;
 
     @Override
@@ -68,9 +70,12 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
     private void finalizaFormulario() {
         preencheAluno();
+        Log.i("Formulario ", "finalizaFormulario: Entro");
         if(aluno.temIdValido()) {
+            Log.i("Formulario ", "finalizaFormulario: Entro edita");
             dao.edita(aluno);
         }else{
+            Log.i("Formulario ", "finalizaFormulario: Entro salva");
             dao.salva(aluno);
         }
         finish();

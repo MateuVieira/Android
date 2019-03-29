@@ -19,7 +19,7 @@ public class ListaAlunosView {
     public ListaAlunosView(Context context) {
         this.context = context;
         this.adapter = new ListaAlunosAdapter(context);
-        this.dao = new AlunoDAO();
+        this.dao = new AlunoDAO(context);
     }
 
     public void confirmaRemocao(final MenuItem item) {

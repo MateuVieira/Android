@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import java.io.Serializable;
 
 public class Aluno implements Serializable {
-    private Integer id = 0;
+    private Integer id;
     private String nome;
     private String telefone;
     private String email;
@@ -61,6 +61,6 @@ public class Aluno implements Serializable {
     }
 
     public boolean temIdValido() {
-        return this.id>0;
+        return this.id != null;
     }
 }
