@@ -38,7 +38,10 @@ public class ListaAlunosAdapter  extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = configuraView(parent);
+        View view = convertView;
+        if (view == null) {
+            view = configuraView(parent);
+        }
         vinculaDadosAlunoNaView(position, view);
         return view;
     }
