@@ -5,10 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
@@ -22,9 +20,6 @@ import static br.com.alura.example.agenda.dao.ConstantesDAO.DAO_DB_TABLE_ALUNOS_
 import static br.com.alura.example.agenda.dao.ConstantesDAO.DAO_DB_TABLE_ALUNOS_TELEFONE;
 
 public class AlunoDAO  extends SQLiteOpenHelper {
-
-    private final static List<Aluno> alunos = new LinkedList<>();
-    private static Integer contadorId = 1;
 
     public AlunoDAO(@Nullable Context context) {
         super(context, DAO_DATABASE_NAME, null, 1);
