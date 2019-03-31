@@ -10,7 +10,7 @@ import br.com.alura.example.aluraviagem.models.Pacote;
 public class PacoteDao {
 
     public List<Pacote> lista() {
-        List<Pacote> pacotes = new ArrayList<>(Arrays.asList(
+        List<Pacote> pacotes = new ArrayList<Pacote>(Arrays.asList(
                 new Pacote("São Paulo", "sao_paulo_sp", 2, new BigDecimal(234.99)),
                 new Pacote("Belo Horizonte", "belo_horizonte_mg", 3, new BigDecimal(421.50)),
                 new Pacote("Recife", "recife_pe", 4, new BigDecimal(754.20)),
