@@ -52,7 +52,11 @@ public class ListaPacotesAdapter extends BaseAdapter {
         View viewCriada = LayoutInflater.from(contex)
                             .inflate(R.layout.item_pacote, parent, false);
         Pacote pacote = pacotes.get(position);
+        preenchendoListView(viewCriada, pacote);
+        return viewCriada;
+    }
 
+    private void preenchendoListView(View viewCriada, Pacote pacote) {
         TextView local = viewCriada.findViewById(R.id.item_pacote_text_local);
         local.setText(pacote.getLocal());
 
@@ -64,8 +68,6 @@ public class ListaPacotesAdapter extends BaseAdapter {
 
         TextView preco = viewCriada.findViewById(R.id.item_pacote_text_valor);
         preco.setText(precoFormatacaoBrasileira(pacote));
-
-        return viewCriada;
     }
 
     private Drawable getDrawableImage(Pacote pacote) {
