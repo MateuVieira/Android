@@ -18,12 +18,15 @@ import java.util.List;
 import java.util.Locale;
 
 import br.com.alura.example.aluraviagem.R;
+import br.com.alura.example.aluraviagem.Util.DiasUtil;
+import br.com.alura.example.aluraviagem.Util.ImagemUtil;
+import br.com.alura.example.aluraviagem.Util.MoedaUtil;
 import br.com.alura.example.aluraviagem.models.Pacote;
 
 public class ListaPacotesAdapter extends BaseAdapter {
 
     private final List<Pacote> pacotes;
-    private Context contex;
+    private final Context contex;
 
     public ListaPacotesAdapter(List<Pacote> pacotes, Context contex){
 
@@ -51,49 +54,41 @@ public class ListaPacotesAdapter extends BaseAdapter {
 
         View viewCriada = LayoutInflater.from(contex)
                             .inflate(R.layout.item_pacote, parent, false);
+
         Pacote pacote = pacotes.get(position);
+
         preenchendoListView(viewCriada, pacote);
+
         return viewCriada;
     }
 
     private void preenchendoListView(View viewCriada, Pacote pacote) {
+        preencheLocal(viewCriada, pacote);
+        preencheImagem(viewCriada, pacote);
+        preencheDias(viewCriada, pacote);
+        preenchePreco(viewCriada, pacote);
+    }
+
+    private void preenchePreco(View viewCriada, Pacote pacote) {
+        TextView preco = viewCriada.findViewById(R.id.item_pacote_text_valor);
+        preco.setText(MoedaUtil.precoFormatacaoBrasileira(pacote.getPreco()));
+    }
+
+    private void preencheDias(View viewCriada, Pacote pacote) {
+        TextView dias = viewCriada.findViewById(R.id.item_pacote_text_dias);
+        dias.setText(DiasUtil.diasEmTexto(pacote.getDias()));
+    }
+
+    private void preencheImagem(View viewCriada, Pacote pacote) {
+        ImageView imagem = viewCriada.findViewById(R.id.item_pacote_image_local);
+        imagem.setImageDrawable(ImagemUtil.getDrawableImage(pacote.getImagem(), contex));
+    }
+
+    private void preencheLocal(View viewCriada, Pacote pacote) {
         TextView local = viewCriada.findViewById(R.id.item_pacote_text_local);
         local.setText(pacote.getLocal());
-
-        ImageView imagem = viewCriada.findViewById(R.id.item_pacote_image_local);
-        imagem.setImageDrawable(getDrawableImage(pacote));
-
-        TextView dias = viewCriada.findViewById(R.id.item_pacote_text_dias);
-        dias.setText(diasEmTexto(pacote));
-
-        TextView preco = viewCriada.findViewById(R.id.item_pacote_text_valor);
-        preco.setText(precoFormatacaoBrasileira(pacote));
     }
 
-    private Drawable getDrawableImage(Pacote pacote) {
-        Resources resources = contex.getResources();
-        int idDoDrawable = resources.getIdentifier(pacote.getImagem(),
-                "drawable",
-                contex.getPackageName());
-        return resources.getDrawable(idDoDrawable);
-    }
 
-    private String precoFormatacaoBrasileira(Pacote pacote) {
-        NumberFormat formatoBrasileiro = DecimalFormat.getCurrencyInstance(
-                                            new Locale("pt", "br"));
-        BigDecimal precoPacote = pacote.getPreco();
-        return formatoBrasileiro.format(precoPacote).replace("R$", "R$ ");
-    }
 
-    private String diasEmTexto(Pacote pacote) {
-        int quantidaDeDias = pacote.getDias();
-        String diasTexto = "";
-
-        if(quantidaDeDias > 1){
-            diasTexto = quantidaDeDias + " dias";
-        } else {
-            diasTexto = quantidaDeDias + " dia";
-        }
-        return diasTexto;
-    }
 }
