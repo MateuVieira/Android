@@ -53,11 +53,11 @@
                 app:layout_constraintVertical_bias="1.0"
                 tools:text="@sample/pacote.json/pacotes/local" />
 
-            <view
+            <View
                 android:id="@+id/item_pacote_divisor"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
-                android:background="@android:color/holo_orange_dark"
+                android:background="#CD4400"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_pacote_image_local" />
