@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/item_pacote_image_local"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:src="@drawable/sao_paulo_sp"
+        android:scaleType="centerCrop"
+         />
+
+    <TextView
+        android:id="@+id/item_pacote_text_local"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="São Paulo"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="@id/item_pacote_image_local"
+        app:layout_constraintEnd_toEndOf="@id/item_pacote_image_local"
+        app:layout_constraintTop_toTopOf="@id/item_pacote_image_local"
+        app:layout_constraintBottom_toBottomOf="@id/item_pacote_image_local"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:background="@android:drawable/screen_background_dark_transparent"
+        />
+
+    <view
+        android:id="@+id/item_pacote_divisor"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="@android:color/holo_orange_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_pacote_image_local"
+        />
+
+    <TextView
+        android:id="@+id/item_pacote_text_dias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 dias"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_pacote_divisor"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_margin="8dp"
+        />
+
+    <TextView
+        android:id="@+id/item_pacote_text_valor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="R$ 243,99"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_green_dark"
+        app:layout_constraintStart_toStartOf="@id/item_pacote_text_dias"
+        app:layout_constraintEnd_toEndOf="@id/item_pacote_text_dias"
+        app:layout_constraintTop_toBottomOf="@id/item_pacote_text_dias"
+        app:layout_constraintHorizontal_bias="0.0"
+        />
+</android.support.constraint.ConstraintLayout>
