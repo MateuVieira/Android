@@ -16,4 +16,6 @@
     <string name="string_preco_final">Texto que representa o preço final</string>
     <string name="image_do_local_que_o_pacote_se_refere">Image do local que o pacote se refere</string>
     <string name="realizar_pagamento">REALIZAR PAGAMENTO</string>
+    <string name="texto_topo_activity_pagamento">Digiti as informações do cartão de crédito que você deseja usar para o pagamento</string>
+    <string name="nome_cartao_digits">abcdefghijlmnopqrstuvxzABCDEFGHIJLMNOPQSTUVX  </string>
 </resources>
