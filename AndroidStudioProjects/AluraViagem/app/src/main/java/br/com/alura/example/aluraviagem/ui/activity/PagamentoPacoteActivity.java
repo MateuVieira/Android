@@ -1,5 +1,6 @@
 package br.com.alura.example.aluraviagem.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -32,5 +33,13 @@ public class PagamentoPacoteActivity extends AppCompatActivity {
     private void preeenchePreco(Pacote pacote) {
         TextView preco = findViewById(R.id.pagamento_pacote_text_preco);
         preco.setText(MoedaUtil.precoFormatacaoBrasileira(pacote.getPreco()));
+
+        Intent intent = new Intent(this, ResumoCompraActivity.class);
+        startActivity(intent);
     }
+
+
+
+
+
 }
