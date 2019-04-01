@@ -12,4 +12,8 @@
     <string name="_2_dias">2 dias</string>
     <string name="pre_o_do_string_banner_inicial_do_pacote">Preço do @string/banner_inicial_do_pacote</string>
     <string name="r_243_99">R$ 243,99</string>
+    <string name="preco_final">Preço final:</string>
+    <string name="string_preco_final">Texto que representa o preço final</string>
+    <string name="image_do_local_que_o_pacote_se_refere">Image do local que o pacote se refere</string>
+    <string name="realizar_pagamento">REALIZAR PAGAMENTO</string>
 </resources>
