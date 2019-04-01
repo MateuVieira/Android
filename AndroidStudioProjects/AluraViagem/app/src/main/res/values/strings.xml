@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Alura Viagem</string>
+    <string name="banner_inicial_do_pacote">Banner inicial do pacote</string>
+    <string name="texot_especiais">Texot especiais</string>
+    <string name="especiais">Especiais</string>
+    <string name="texto_pa_s">Texto país</string>
+    <string name="brasil">Brasil</string>
+    <string name="imagem_do_pacote_de_viagem">Imagem do pacote de viagem</string>
+    <string name="separa_o_entre_a_imagem_e_string_texto_pa_s">Separação entre a imagem e @string/texto_pa_s</string>
+    <string name="s_o_paulo">São Paulo</string>
+    <string name="n_mero_de_dias">Número de dias</string>
+    <string name="_2_dias">2 dias</string>
+    <string name="pre_o_do_string_banner_inicial_do_pacote">Preço do @string/banner_inicial_do_pacote</string>
+    <string name="r_243_99">R$ 243,99</string>
 </resources>
