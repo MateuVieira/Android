@@ -1,5 +1,6 @@
 package br.com.alura.example.aluraviagem.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -34,6 +35,10 @@ public class ResumoPacoteActivity extends AppCompatActivity {
         preencheDia(pacote);
         preenchePreco(pacote);
         preencheData(pacote);
+
+        Intent intent = new Intent(this, PagamentoPacoteActivity.class);
+        startActivity(intent);
+
     }
 
     private void preencheData(Pacote pacote) {
