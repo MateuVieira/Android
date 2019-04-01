@@ -30,39 +30,39 @@ public class ResumoPacoteActivity extends AppCompatActivity {
                     2,
                     new BigDecimal(243.99));
 
-        preencheImagem(pacote);
-        preencheLocal(pacote);
-        preencheDia(pacote);
-        preenchePreco(pacote);
-        preencheData(pacote);
+        preencheImagem(pacote.getImagem(), R.id.resumo_pacote_imagem);
+        preencheLocal(pacote.getLocal(), R.id.resumo_pacote_text_local);
+        preencheDia(pacote.getDias(), R.id.resumo_pacote_text_dias);
+        preenchePreco(pacote.getPreco(), R.id.resumo_pacote_text_preco);
+        preencheData(pacote.getDias(), R.id.resumo_pacote_text_data);
 
         Intent intent = new Intent(this, PagamentoPacoteActivity.class);
         startActivity(intent);
 
     }
 
-    private void preencheData(Pacote pacote) {
-        TextView pacoteData = findViewById(R.id.resumo_pacote_text_data);
-        pacoteData.setText(FormatadorDeDataUtil.formataData(pacote.getDias()));
+    private void preencheData(int dia, int id) {
+        TextView pacoteData = findViewById(id);
+        pacoteData.setText(FormatadorDeDataUtil.formataData(dia));
     }
 
-    private void preenchePreco(Pacote pacote) {
-        TextView pacotePreco = findViewById(R.id.resumo_pacote_text_preco);
-        pacotePreco.setText(MoedaUtil.precoFormatacaoBrasileira(pacote.getPreco()));
+    private void preenchePreco(BigDecimal preco, int id) {
+        TextView pacotePreco = findViewById(id);
+        pacotePreco.setText(MoedaUtil.precoFormatacaoBrasileira(preco));
     }
 
-    private void preencheDia(Pacote pacote) {
-        TextView pacoteDias = findViewById(R.id.resumo_pacote_text_dias);
-        pacoteDias.setText(DiasUtil.diasEmTexto(pacote.getDias()));
+    private void preencheDia(int dia, int id) {
+        TextView pacoteDias = findViewById(id);
+        pacoteDias.setText(DiasUtil.diasEmTexto(dia));
     }
 
-    private void preencheLocal(Pacote pacote) {
-        TextView pacoteLocal = findViewById(R.id.resumo_pacote_text_local);
-        pacoteLocal.setText(pacote.getLocal());
+    private void preencheLocal(String local, int id) {
+        TextView pacoteLocal = findViewById(id);
+        pacoteLocal.setText(local);
     }
 
-    private void preencheImagem(Pacote pacote) {
-        ImageView pacoteImage = findViewById(R.id.resumo_pacote_imagem);
-        pacoteImage.setImageDrawable(ImagemUtil.getDrawableImage(pacote.getImagem(), this));
+    private void preencheImagem(String image, int id) {
+        ImageView pacoteImage = findViewById(id);
+        pacoteImage.setImageDrawable(ImagemUtil.getDrawableImage(image, this));
     }
 }
