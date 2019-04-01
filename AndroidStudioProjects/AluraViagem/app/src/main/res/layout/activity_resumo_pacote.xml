@@ -9,15 +9,16 @@
 
     <ImageView
         android:id="@+id/resumo_pacote_imagem"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="140dp"
+        android:contentDescription="@string/image_do_local_que_o_pacote_se_refere"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/sao_paulo_sp" />
+        tools:srcCompat="@drawable/sao_paulo_sp" />
 
     <TextView
         android:id="@+id/resumo_pacote_text_local"
@@ -37,6 +38,17 @@
         tools:text="São Paulo" />
 
     <TextView
+        android:id="@+id/resumo_pacote_text_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/resumo_pacote_text_preco"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resumo_pacote_text_dias"
+        tools:text="08/12 - 10/12 de 2017" />
+
+    <TextView
         android:id="@+id/resumo_pacote_text_dias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,15 +56,6 @@
         app:layout_constraintStart_toStartOf="@+id/resumo_pacote_text_local"
         app:layout_constraintTop_toBottomOf="@+id/resumo_pacote_text_local"
         tools:text="2 dias" />
-
-    <TextView
-        android:id="@+id/resumo_pacote_text_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/resumo_pacote_text_dias"
-        app:layout_constraintTop_toBottomOf="@+id/resumo_pacote_text_dias"
-        tools:text="08/12 - 10/12 de 2017" />
 
     <TextView
         android:id="@+id/resumo_pacote_text_preco_final"
@@ -63,7 +66,8 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Preço final:"
+        android:contentDescription="@string/string_preco_final"
+        android:text="@string/preco_final"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.971"
         app:layout_constraintStart_toEndOf="@+id/resumo_pacote_text_dias"
@@ -75,11 +79,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textColor="@android:color/holo_green_dark"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/resumo_pacote_text_data"
-        app:layout_constraintEnd_toEndOf="@+id/resumo_pacote_text_preco_final"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/resumo_pacote_text_data"
         app:layout_constraintTop_toBottomOf="@+id/resumo_pacote_text_preco_final"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="R$ 243,99" />
 
     <Button
@@ -93,7 +101,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/button_laranja_shape"
-        android:text="REALIZAR PAGAMENTO"
+        android:text="@string/realizar_pagamento"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintCircleRadius="10dp"
